@@ -1,64 +1,92 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
     height: 100%;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-
-.header {
-    background-color: lightblue;
-    flex: 1;
-}
-
-.sidebar-left, .sidebar-right {
-    background-color: peachpuff;
-    flex: 1;
-}
-
-.content {
-    background-color: white;
-    flex: 2;
-}
-
-.middle {
-    background-color: lightgreen;
-    flex: 1;
-}
-
-.footer {
-    background-color: lightblue;
-    flex: 1;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-
 .header, .footer {
-    height: 10%;
+    height: 15%;
+    background-color: rgba(173, 216, 230, 1);
+    position: relative;
 }
 
-.sidebar-left, .sidebar-right {
-    flex: 1;
+.center {
+    height: 70%;
+    justify-content: center;
+}
+
+.header, .footer, .center {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.center-left{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 100%;
+}
+
+.center-left-top{
     height: 80%;
+    background-color: rgba(255, 255, 255, 1);
 }
 
-.content {
-    flex: 2;
-    height: 80%;
+.center-left-bot{
+    height: 20%;
+    background-color: rgba(144, 238, 144, 1);
 }
 
-.middle {
-    height: 10%;
+.center-left-top{
+    display: flex;
+    flex-direction: row;
 }
+
+
+.sidebar-left{
+    width: 33%;
+    background-color: rgba(250, 221, 215, 0.8);
+    padding-left: 10px;
+}
+
+.center-right{
+    width: 25%;
+    background-color: rgba(250, 221, 215, 1);
+    height: 100%;
+    padding-left: 10px;
+}
+
+.middle, .content{
+    padding-left: 10px;
+}
+
+.header-center-text, .footer-center-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.x, .y {
+    margin-left: 20px;
+    text-align: left;
+}
+
+.sale-image {
+    margin-top: 300px;
+    max-width: 100%;
+    height: auto;
+}
+
