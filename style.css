@@ -7,8 +7,9 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
+    display: grid;
 }
-
+    
 .container {
     display: grid;
     grid-template-areas:
@@ -22,27 +23,33 @@ body, html {
 }
 
 .sidebar-left {
+    display: grid;
     grid-area: left;
     background-color: rgba(250, 221, 215, 0.8);
     padding: 10px;
 }
 
 .content {
+    display: grid;
     grid-area: content;
     background-color: rgba(255, 255, 255, 1);
     padding: 10px;
 }
 
 .sidebar-right {
+    display: grid;
     grid-area: right;
     background-color: rgba(250, 221, 215, 1);
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+}
+
+ul {
+    padding-bottom: 200px;
+    padding-top: 0px;
 }
 
 .middle {
+    display: grid;
     grid-area: middle;
     background-color: rgba(144, 238, 144, 1);
     padding-left: 10px;
@@ -51,36 +58,33 @@ body, html {
 }
 
 .header {
+    display: grid;
     position: relative;
     grid-area: header;
     background-color: rgba(173, 216, 230, 1);
-    text-align: center;
-    padding: 20px;
-    height: auto;
-}
-
-.footer {
-    position: relative;
-    grid-area: footer;
-    background-color: rgba(173, 216, 230, 1);
-    text-align: center;
-    padding: 20px;
     height: 200px;
 }
 
+.footer {
+    display: grid;
+    position: relative;
+    grid-area: footer;
+    background-color: rgba(173, 216, 230, 1);
+    height: 200px;
+}
+
+.footer-center-text, .header-center-text {
+    text-align: center;
+}
+
 .x {
-    position: absolute;
-    top: 45px;
-    left: 20px;
-    padding-left: 5px;
-    padding-right: 5px;
+    text-align: left;
+    padding-left: 20px;
 }
 
 .y {
-    position: absolute;
-    bottom: 10px;
-    left: 20px;
-    padding: 5px;
+    text-align: left;
+    padding-left: 20px;
 }
 
 

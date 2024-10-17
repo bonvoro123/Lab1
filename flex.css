@@ -72,10 +72,13 @@ body, html {
     padding-left: 10px;
 }
 
-.header-center-text, .footer-center-text {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+.footer-center-text {
+    width: 50%;
+    text-align: center;
+}
+
+.header-center-text{ 
+    width: 65%;
     text-align: center;
 }
 
