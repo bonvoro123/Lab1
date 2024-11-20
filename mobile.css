@@ -94,22 +94,15 @@ ul {
 
 @media (max-width: 768px){
     
-
-    .footer, .header {
-        height: auto;
-        align-items: center;
-    }
-
     .sidebar-left, .sidebar-right, .middle .content {
         height: auto;
         padding: 0px;
         padding-left: 5px;
+        padding-right: 5px;
     }
 
     h2, h3, p, li{
         font-size: 0.75em;
     }
-
-
 }
 
