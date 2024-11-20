@@ -63,6 +63,7 @@ ul {
     grid-area: header;
     background-color: rgba(173, 216, 230, 1);
     height: 200px;
+    align-items: center;
 }
 
 .footer {
@@ -71,6 +72,7 @@ ul {
     grid-area: footer;
     background-color: rgba(173, 216, 230, 1);
     height: 200px;
+    align-items: center;
 }
 
 .x {
