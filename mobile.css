@@ -92,14 +92,24 @@ ul {
     height: auto;
 }
 
-@media (max-width: 768px){
-    
-    .sidebar-left, .sidebar-right, .middle .content {
-        height: auto;
-        padding: 0px 5px 0px;
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
     }
 
-    h2, h3, p, li{
+    .sidebar-left, .sidebar-right, .content, .middle, .header, .footer {
+        padding: 20px;
+        margin: 0;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+
+    h2, h3, p, li {
         font-size: 0.75em;
     }
 }
