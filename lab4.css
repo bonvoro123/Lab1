@@ -203,7 +203,7 @@ h2{
     }
 
     .item2, .item3, .item4{
-        padding: 10px 0px 0px;
+        padding-left: 0px;
     }
 
     .header{
@@ -224,7 +224,7 @@ h2{
     }
 
 }
-@media (max-height: 600px) {
+@media (max-height: 700px) {
     .item1, .item2, .item3, .item4 {
         width: 15%;
         height: 75%;
@@ -250,12 +250,28 @@ h2{
         height: 50%;
     }
 
-    .item2, .item3, .item4{
-        padding-left: 10px;
-    }
-
     .info{
         font-size: 0.6em;
+    }
+}
+
+@media (max-height: 1024px) and (max-width: 830px) {
+    .item1, .item2, .item3, .item4 {
+        width: 20%;
+        height: 75%;
+    }
+
+    .footer-text, .info {
+        font-size: 0.8em;
+    }
+
+    .logo{
+        font-size: 0.5em;
+    }
+
+    .menu-icon{
+        height: 15px;
+        width: 12px;
     }
 }
 
