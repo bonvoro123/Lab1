@@ -295,5 +295,18 @@ h2{
     .info{
         font-size: 0.6em;
     }
+
+    .block{
+        width: 66px;
+        height: 50px;
+    }
+
+    .icon img{
+        width: 20px;
+    }
+
+    .text{
+        font-size: 0.5em;
+    }
 }
 
