@@ -5,67 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guitar Store</title>
     <link rel="stylesheet" href="flex.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const header = document.querySelector(".header");
+            const footer = document.querySelector(".footer");
+            [header.innerHTML, footer.innerHTML] = [footer.innerHTML, header.innerHTML];
+    
+            const diagonal1 = 10;
+            const diagonal2 = 8; 
+            const rhombusArea = (diagonal1 * diagonal2) / 2;
+    
+            const rhombusParagraph = document.createElement("p");
+            rhombusParagraph.textContent = `Area of the rhombus: ${rhombusArea}`;
+            rhombusParagraph.classList.add("rhombus-area");
+            const middleBlock = document.querySelector(".content");
+    
+            const form = document.createElement("form");
+            form.innerHTML = `
+                <label>Side A: <input type="number" id="sideA" required></label>
+                <label>Side B: <input type="number" id="sideB" required></label>
+                <label>Side C: <input type="number" id="sideC" required></label>
+                <button type="submit">Check Triangle</button>
+                <button type="button" id="saveResults">Save Results</button>
+            `;
+            middleBlock.appendChild(form);
+            form.classList.add("form-area");
+    
+            let isValidTriangle = null;
+    
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const a = parseFloat(document.getElementById("sideA").value);
+                const b = parseFloat(document.getElementById("sideB").value);
+                const c = parseFloat(document.getElementById("sideC").value);
+                isValidTriangle = a + b > c && a + c > b && b + c > a;
+    
+                alert(`Triangle construction possible: ${isValidTriangle}`);
+            });
+    
+            document.getElementById("saveResults").addEventListener("click", () => {
+                if (isValidTriangle !== null) {
+                    document.cookie = `triangleCheck=${isValidTriangle}; path=/;`;
+                    alert(`Results saved: ${isValidTriangle}`);
+                } else {
+                    alert("Please check the triangle first before saving.");
+                }
+            });
+    
+            const cookieData = document.cookie.split('; ').find(row => row.startsWith('triangleCheck'));
+    
+            if (cookieData) {
+                const cookieValue = cookieData.split('=')[1];
+                const confirmDelete = confirm(`У вас є збережені дані. Можливість побудови трикутника: ${cookieValue}. Видалити їх?`);
+    
+                if (confirmDelete) {
+                    document.cookie = "triangleCheck=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                    location.reload();
+                } else {
+                    alert('Будь ласка, перезавантажте сторінку для видалення даних.');
+                }
+    
+                form.remove();
+            }
+    
+            const italicOption = document.createElement("div");
+            italicOption.innerHTML = `
+                <label><input type="radio" id="italicToggle"> Toggle Italics</label>
+            `;
+            document.querySelector(".sidebar-left").appendChild(italicOption);
+    
+            document.getElementById("italicToggle").addEventListener("change", (e) => {
+                const sidebar = document.querySelector(".sidebar-left");
+                if (e.target.checked) {
+                    sidebar.style.fontStyle = "italic";
+                    localStorage.setItem("sidebarItalic", "true");
+                } else {
+                    sidebar.style.fontStyle = "normal";
+                    localStorage.removeItem("sidebarItalic");
+                }
+            });
+    
+            if (localStorage.getItem("sidebarItalic") === "true") {
+                document.querySelector(".sidebar-left").style.fontStyle = "italic";
+                document.getElementById("italicToggle").checked = true;
+            }
+    
+            const listBlock = document.createElement("div");
+            const list = document.createElement("ol");
+            const addItemLink = document.createElement("a");
+            addItemLink.textContent = "Add Item to List";
+            addItemLink.href = "#";
+    
+            listBlock.appendChild(list);
+            listBlock.appendChild(addItemLink);
+    
+            addItemLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                const newItem = prompt("Enter item text:");
+                if (newItem) {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = newItem;
+                    list.appendChild(listItem);
+    
+                    Array.from(list.children).forEach((item, index) => {
+                        if (index % 2 === 0) {
+                            item.style.color = "white";
+                            item.style.backgroundColor = "black";
+                        } else {
+                            item.style.color = "black";
+                            item.style.backgroundColor = "white";
+                        }
+                    });
+                }
+            });
+    
+            middleBlock.appendChild(listBlock);
+            middleBlock.appendChild(rhombusParagraph);
+            listBlock.classList.add("list-area");
+    
+            const savedList = localStorage.getItem("savedList");
+            if (savedList) {
+                JSON.parse(savedList).forEach((itemText) => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = itemText;
+                    list.appendChild(listItem);
+                });
+            }
+        });
+    </script>
+     
 </head>
 <body>
-    <div class = "container">
+    <div class="container">
         <div class="header">
             <div class="x">
                 <h3>Top Brands</h3>
                 <p>Fender, Gibson, Taylor, PRS, Yamaha</p>
             </div>
-            <div class = "header-center-text">
-                <h1>Welcome to the Guitar Store</h1>
-            </div>
         </div>
-        <div class = "center">
-            <div class ="center-left">
-                <div class ="center-left-top">
+        <div class="center">
+            <div class="center-left">
+                <div class="center-left-top">
                     <div class="sidebar-left">
                         <h2>About Us</h2>
                         <p>We offer a wide variety of guitars, from acoustic to electric, catering to beginners and professionals alike.</p>
-                        <h3>Our Top Guitars:</h3>
-                        <ol>
-                            <li>Fender Stratocaster</li>
-                            <li>Gibson Les Paul</li>
-                            <li>Taylor 214ce</li>
-                            <li>Ibanez RG550</li>
-                            <li>Martin D-28</li>
-                            <li>Gibson SG Standard</li>
-                        </ol>
-                    </div>        
-                    <div class="content">
-                        <h2>Featured Guitars</h2>
-                        <h3>Fender Stratocaster</h3>
-                        <p>The Fender Stratocaster is a classic guitar known for its rich tones and timeless design. Ideal for both beginners and experts.</p>
-                        <h3>Gibson Les Paul</h3>
-                        <p>The Gibson Les Paul delivers a deep, warm sound that’s perfect for rock, blues, and jazz guitarists.</p>
-                        <h3>Taylor 214ce</h3>
-                        <p>This acoustic guitar offers clear sound and impeccable craftsmanship, making it a favorite for unplugged performances.</p>
                     </div>
+                    <div class="content"></div>
+                </div>
+                <div class="center-left-bot">
+                    <div class="middle">
+                    </div>
+                </div>
             </div>
-            <div class ="center-left-bot">
-                <div class="middle">
-                    <h2>Special Offers</h2>
-                    <p>Save up to 20% on select models! Visit our store for more details and discover great deals!</p>
-                </div> 
-            </div>
-            </div>
-            <div class="center-right">
-                <h2>Menu</h2>
-                <ul>
-                    <li><a href="index.html">Grid</a></li>
-                    <li><a href="table.html">Table</a></li>
-                    <li><a href="acoustic.html">Acoustic Guitars</a></li>
-                    <li><a href="electric.html">Electric Guitars</a></li>
-                    <li><a href="bass.html">Bass Guitars</a></li>
-                    <li><a href="accessories.html">Accessories</a></li>
-                    <li><a href="mobile.html">Mobile</a></li>
-                </ul>
-                <img src="guitar_sale.jpg" usemap="#my-map" alt="Sale" class="sale-image">
-            <map name="my-map">
-                <area shape="rect" coords="0,0,786,237" href="acoustic.html" target="_blank" alt="Acoustic">
-            </map>
-            </div>       
+            <div class="center-right"></div>
         </div>
         <div class="footer">
             <div class="y">
